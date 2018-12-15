@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>Simple web site</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5f4b44" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .header-links {
+        display: flex;
+        align-items: center;
+        padding: 0.5em 1em;
+        margin: 0;
+        list-style-type: none;
+        background: #5f4b44;
+      }
+
+      .logo {
+        display: block;
+        padding: 0.1em 0;
+        color: #fff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ol class="header-links">
+        <li class="logo">My Simple site</li>
+      </ol>
+    </nav>
+
+    <noscript><h1>Oops! enable JS for a better experience :)</h1></noscript>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(registration => {
+              console.log("SW registered: ", registration);
+            })
+            .catch(registrationError => {
+              console.log("SW registration failed: ", registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
