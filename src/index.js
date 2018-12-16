@@ -1,7 +1,56 @@
+import { define } from "osagai";
 import styles from "./styles.css";
 
-const app = document.createElement("div");
+import "./loader/weather-loader";
+import "./forecast/weather-forecast";
 
-app.innerHTML = `<h1 class="${styles.title}">Welcome</h1>`;
+function App({ queryAll, update }) {
+  const initialData = {
+    state: "loading",
+    visibleCards: {},
+    selectedCities: [],
+    daysOfWeek: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  };
 
-document.body.appendChild(app);
+  queryAll("weather-forecast").then(forecasts => {
+    update((data = {}) => {
+      data.state = "loading";
+      return data;
+    });
+
+    return Promise.all(
+      Array.from(forecasts).map(forecast => forecast.loadForecast())
+    )
+      .then(() => {
+        update((data = {}) => {
+          data.state = "idle";
+          return data;
+        });
+      })
+      .catch(() => {
+        update(data => {
+          data.state = "error";
+          return data;
+        });
+      });
+  });
+
+  return (data = initialData) => {
+    return `
+      <div>
+        <main class="${styles.main}">
+          <weather-forecast city="berlin"></weather-forecast>
+        </main>
+
+        ${data.state === "loading" ? "<weather-loader></weather-loader>" : ""}
+        ${
+          data.state === "error"
+            ? `<h3 class=${styles.error}>Ooops, it seems you are offline</h3>`
+            : ""
+        }
+      </div>
+    `;
+  };
+}
+
+define("weather-app", App);

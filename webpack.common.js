@@ -23,7 +23,10 @@ module.exports = {
       template: "./src/index.html"
     }),
     new webpack.HashedModuleIdsPlugin(),
-    new CopyWebpackPlugin(["src/manifest.json"]),
+    new CopyWebpackPlugin([
+      "src/manifest.json",
+      { from: "src/images", to: "images" }
+    ]),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true

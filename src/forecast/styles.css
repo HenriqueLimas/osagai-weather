@@ -1,0 +1,146 @@
+.card {
+  padding: 16px;
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 2px;
+  margin: 16px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.location {
+  font-size: 1.75em;
+  text-transform: capitalize;
+}
+
+.date,
+.description {
+  font-size: 1.25em;
+}
+
+.current {
+  display: flex;
+}
+.current .icon {
+  width: 128px;
+  height: 128px;
+}
+.visual {
+  display: flex;
+  font-size: 4em;
+}
+.visual .scale {
+  font-size: 0.5em;
+  vertical-align: super;
+}
+.visual,
+.current .description {
+  flex-grow: 1;
+}
+.current .feelsLike:before {
+  content: "Feels like: ";
+  color: #888;
+}
+.current .wind:before {
+  content: "Wind: ";
+  color: #888;
+}
+.precip:before {
+  content: "Precipitation: ";
+  color: #888;
+}
+.humidity:before {
+  content: "Humidity: ";
+  color: #888;
+}
+.pollen:before {
+  content: "Pollen Count: ";
+  color: #888;
+}
+.pcount:before {
+  content: "Pollen ";
+  color: #888;
+}
+
+.future {
+  display: flex;
+}
+.oneday {
+  flex-grow: 1;
+  text-align: center;
+}
+.oneday .icon {
+  width: 64px;
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tempHigh,
+.tempLow {
+  display: inline-block;
+}
+.tempLow {
+  color: #888;
+}
+
+.icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.clear {
+  background-image: url("/images/clear.png");
+}
+.clearNight {
+  background-image: url("/images/clear.png");
+}
+.rain {
+  background-image: url("/images/rain.png");
+}
+.snow {
+  background-image: url("/images/snow.png");
+}
+.sleet {
+  background-image: url("/images/sleet.png");
+}
+.wind {
+  background-image: url("/images/wind.png");
+}
+.fog {
+  background-image: url("/images/fog.png");
+}
+.clouds {
+  background-image: url("/images/cloudy.png");
+}
+.partlyCloudyDay {
+  background-image: url("/images/partly-cloudy.png");
+}
+.partlyCloudyNight {
+  background-image: url("/images/partly-cloudy.png");
+}
+.thunderstorms {
+  background-image: url("/images/thunderstorm.png");
+}
+
+@media (max-width: 450px) {
+  .date,
+  .description {
+    font-size: 0.9em;
+  }
+  .current .icon {
+    width: 96px;
+    height: 96px;
+  }
+  .current .visual {
+    font-size: 3em;
+  }
+  .future .oneday .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tempHigh,
+  .tempLow {
+    display: block;
+  }
+}
